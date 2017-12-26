@@ -1,0 +1,26 @@
+//v
+//Este loop funciona para la pagina author.php, single, article, o cualquier pagina a la cual llegue gracias a un Permalink del Author que quiero mostrar.
+//
+<?php 
+      $args = array(
+          'post_type' => 'mi_postype_nombre' ,
+					'author' => get_queried_object_id(), // Toma el id del author que se está cargando en esta page
+					'showposts' => 1
+			);
+      // Se dispara el loop
+			$custom_posts = new WP_Query( $args );
+			if ( $custom_posts->have_posts() ):
+			while ( $custom_posts->have_posts() ) : $custom_posts->the_post();?>
+          // llamados, incluso usando fiels de ACF
+          <?php the_title(); ?>
+          <?php the_field('subtitulo'); ?>
+          <img src="<?php the_field('img_banner'); ?>" class="w100">
+				
+<?php
+		  endwhile;
+      else:
+			// nothing found
+			endif;
+?>
+
+//v
