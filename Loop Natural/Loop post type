@@ -1,0 +1,7 @@
+<?php $loop = new WP_Query( array('post_type'=>'postype_nombre','posts_per_page'=>100)); ?>	
+			<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>  
+							<?php the_post_thumbnail( 'full', array( 'class'  => 'w100' ) ); ?>
+							<i class="fa fa-pencil hide-mobile" aria-hidden="true"></i><?php the_title(); ?>
+							<?php the_excerpt(); ?>
+						  <button><a href="<?php the_permalink(); ?>">Ver más</a></button>
+<?php endwhile; wp_reset_query(); ?>
